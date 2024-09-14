@@ -25,7 +25,10 @@ jobs:
         run: npm install
 
       - name: Install Expo CLI
-        run: npm install -g expo-cli
+        run: npm install -g eas-cli
 
-      - name: Run Expo build
-        run: expo build:android --no-wait # or expo build:ios --no-wait if you're building for iOS
+      - name: Configure EAS CLI
+        run: eas login --token ${{ secrets.EAS_TOKEN }}
+
+      - name: Run EAS build for Android
+        run: eas build --platform android
